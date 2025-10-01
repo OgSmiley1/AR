@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ARViewer from '../ARViewer';
+import ARViewer, { generateIframeAllowList } from '../ARViewer';
 
 /**
  * Utility factory for generating a mock Emersya session URL for testing.
@@ -12,6 +12,14 @@ function createMockSessionUrl() {
 }
 
 describe('ARViewer', () => {
+  describe('generateIframeAllowList', () => {
+    it('produces a stable semicolon-delimited permission string', () => {
+      expect(generateIframeAllowList()).toBe(
+        'camera *; microphone *; xr-spatial-tracking *'
+      );
+    });
+  });
+
   it('renders an iframe that opts into WebXR, camera, and microphone permissions', () => {
     render(<ARViewer sessionUrl={createMockSessionUrl()} />);
 

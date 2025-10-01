@@ -1,5 +1,20 @@
 import React from 'react';
 
+const ALLOWED_PERMISSIONS = Object.freeze([
+  'camera *',
+  'microphone *',
+  'xr-spatial-tracking *',
+]);
+
+/**
+ * Generates the semicolon-delimited permission string required for the Emersya iframe.
+ *
+ * @returns {string} A stable iframe permission declaration in the order expected by tests and browsers.
+ */
+export function generateIframeAllowList() {
+  return ALLOWED_PERMISSIONS.join('; ');
+}
+
 /**
  * Renders an Emersya-powered augmented reality viewer for a specific watch.
  *
@@ -17,7 +32,7 @@ function ARViewer({ sessionUrl }) {
       <iframe
         src={sessionUrl}
         title="Emersya AR Viewer"
-        allow="camera *; microphone *; xr-spatial-tracking *"
+        allow={generateIframeAllowList()}
         allowFullScreen
         style={{ border: 'none', width: '100%', height: '100%' }}
       />
