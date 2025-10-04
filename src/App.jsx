@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import WatchSelector from './components/WatchSelector.jsx';
-import ARViewer from './components/ARViewer.jsx';
+import EnhancedARViewer from './components/EnhancedARViewer.jsx';
 import PrivacyConsent from './components/PrivacyConsent.jsx';
 import './App.css';
 
@@ -45,7 +45,7 @@ function App() {
   };
 
   if (currentView === 'ar') {
-    return <ARViewer watchModel={selectedWatch} onClose={handleCloseAR} />;
+    return <EnhancedARViewer watchModel={selectedWatch} onClose={handleCloseAR} />;
   }
 
   if (currentView === 'privacy') {
